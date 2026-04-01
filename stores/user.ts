@@ -22,7 +22,7 @@ export const useUserStore = defineStore('user', {
 
     async fetchUser() {
       try {
-        // 🪄 LA CORRECTION EST ICI : On force la baseURL à '/'
+        // 🪄 La magie opère ici : on tape à la racine du domaine courant
         const res = await $fetch<{ user: User }>('/api/auth/user', { 
           credentials: 'include',
           baseURL: '/' 
@@ -36,15 +36,13 @@ export const useUserStore = defineStore('user', {
 
     async logout() {
       try {
-        // 🪄 LA CORRECTION EST ICI AUSSI
         await $fetch('/api/auth/logout', { 
           method: 'GET', 
           credentials: 'include',
-          baseURL: '/'
+          baseURL: '/' 
         })
         this.setUser(null)
-        // La redirection commence déjà par un '/', donc elle tapera bien la racine du 151
-        window.location.href = '/login' 
+        window.location.href = '/login'
       } catch (err) {
         console.error('Logout failed:', err)
       }
