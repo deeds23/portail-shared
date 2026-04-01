@@ -2,10 +2,10 @@
   <div class="h-screen w-full flex flex-col bg-gray-50 overflow-hidden">
     <nav class="bg-neutral-primary w-full z-50 border-b border-default shadow-sm shrink-0">
       <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <nuxtlink to="/" class="flex items-center space-x-3">
+        <NuxtLink to="/" class="flex items-center space-x-3">
           <img src="/logo_SO.png" class="h-7" alt="Logo" />
           <span class="self-center text-xl font-semibold whitespace-nowrap">Portail SO APP</span>
-        </nuxtlink>
+        </NuxtLink>
 
         <div v-if="userStore.authenticated" class="w-full md:block md:w-auto">
           <ul
@@ -14,18 +14,18 @@
             <li>
               <div class="flex justify-between items-center px-4 max-w-screen-xl mx-auto">
                 <div class="flex gap-3">
-                  <nuxtlink to="/app152/carte"
+                  <NuxtLink to="/app152/carte"
                     class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded transition text-white">
                     🚀 App 152
-                  </nuxtlink>
-                  <nuxtlink to="/app152/simple"
+                  </NuxtLink>
+                  <NuxtLink to="/app152/simple"
                     class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded transition text-white">
                     🚀 App 152
-                  </nuxtlink>
-                  <nuxtlink to="/app152/formulaire"
+                  </NuxtLink>
+                  <NuxtLink to="/app152/formulaire"
                     class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded transition text-white">
                     🚀 App 152
-                  </nuxtlink>
+                  </NuxtLink>
 
                   <button @click="activeApp = 'voxa'"
                     :class="activeApp === 'voxa' ? 'bg-emerald-700 ring-2 ring-white' : 'bg-emerald-600 hover:bg-emerald-700'"
@@ -41,7 +41,7 @@
               </div>
 
             </li>
-            <li><nuxtlink to="/profile" class="text-blue-600 font-bold hover:underline">Profil</nuxtlink></li>
+            <li><NuxtLink to="/profile" class="text-blue-600 font-bold hover:underline">Profil</NuxtLink></li>
             <li><button @click="userStore.logout" class="px-3 py-1 bg-red-600 text-white rounded">Logout</button></li>
           </ul>
         </div>
@@ -55,7 +55,7 @@
 </template>
 
 <script setup lang="ts">
-  import { onMounted } from 'vue'
+  import { onMounted, ref } from 'vue'
   import { useUserStore } from '~/stores/user'
   const userStore = useUserStore()
   onMounted(async () => {
