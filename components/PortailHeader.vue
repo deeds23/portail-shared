@@ -14,17 +14,17 @@
             <li>
               <div class="flex justify-between items-center px-4 max-w-screen-xl mx-auto">
                 <div class="flex gap-3">
-                  <NuxtLink to="/app152/carte"
+                  <NuxtLink to="/app/carte"
                     class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded transition text-white">
-                    🚀 App 152
+                    🚀 Carte
                   </NuxtLink>
-                  <NuxtLink to="/app152/simple"
+                  <NuxtLink to="/app/simple"
                     class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded transition text-white">
-                    🚀 App 152
+                    🚀 Simple
                   </NuxtLink>
-                  <NuxtLink to="/app152/formulaire"
+                  <NuxtLink to="/app/formulaire"
                     class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded transition text-white">
-                    🚀 App 152
+                    🚀 Formulaire
                   </NuxtLink>
 
                   <button @click="activeApp = 'voxa'"
