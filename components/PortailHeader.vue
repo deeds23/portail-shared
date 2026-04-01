@@ -13,8 +13,6 @@
             <li>
                  <header class="bg-slate-900 text-white p-4 shadow-md w-full shrink-0">
       <div class="flex justify-between items-center px-4 max-w-screen-xl mx-auto">
-        <h1 class="font-bold">Dashboard Central</h1>
-        
         <div class="flex gap-3">
           <button 
             @click="allerVersApp152" 
