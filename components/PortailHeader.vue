@@ -2,10 +2,10 @@
   <div class="h-screen w-full flex flex-col bg-gray-50 overflow-hidden">
     <nav class="bg-neutral-primary w-full z-50 border-b border-default shadow-sm shrink-0">
       <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="/" class="flex items-center space-x-3">
+        <nuxtlink to="/" class="flex items-center space-x-3">
           <img src="/logo_SO.png" class="h-7" alt="Logo" />
           <span class="self-center text-xl font-semibold whitespace-nowrap">Portail SO APP</span>
-        </a>
+        </nuxtlink>
 
         <div v-if="userStore.authenticated" class="w-full md:block md:w-auto">
           <ul
@@ -41,7 +41,7 @@
               </div>
 
             </li>
-            <li><a href="/profile" class="text-blue-600 font-bold hover:underline">Profil</a></li>
+            <li><nuxtlink to="/profile" class="text-blue-600 font-bold hover:underline">Profil</nuxtlink></li>
             <li><button @click="userStore.logout" class="px-3 py-1 bg-red-600 text-white rounded">Logout</button></li>
           </ul>
         </div>
