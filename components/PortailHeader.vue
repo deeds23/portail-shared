@@ -11,7 +11,7 @@
           <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-default rounded-base md:flex-row md:space-x-8 md:mt-0 md:border-0">
           
             <li>
-                 <header class="bg-slate-900 text-white p-4 shadow-md w-full shrink-0">
+                 <header class="text-white p-4 shadow-md w-full shrink-0">
       <div class="flex justify-between items-center px-4 max-w-screen-xl mx-auto">
         <div class="flex gap-3">
           <button 
