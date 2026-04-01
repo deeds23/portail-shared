@@ -4,7 +4,7 @@
       <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="/" class="flex items-center space-x-3">
           <img src="/logo_SO.png" class="h-7" alt="Logo" />
-          <span class="self-center text-xl font-semibold whitespace-nowrap">Portail SO</span>
+          <span class="self-center text-xl font-semibold whitespace-nowrap">Portail SO APP</span>
         </a>
 
         <div v-if="userStore.authenticated" class="w-full md:block md:w-auto">
