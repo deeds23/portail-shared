@@ -36,14 +36,16 @@
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue'
+  import { onMounted, ref } from 'vue'
   import { useUserStore } from '~/stores/user'
   
   const userStore = useUserStore()
-  const activeApp = ref<string | null>(null)
+  const activeApp = ref(null)
 
-  // Les fonctions navigateTo doivent aussi utiliser { external: true } si elles pointent vers le 152
-  const allerVersApp1522 = () => {
-    navigateTo('/app152/simple', { external: true })
-  }
+  // On remet la vérification ici pour débloquer le v-if !
+  onMounted(async () => {
+    if (!userStore.authenticated) {
+      await userStore.fetchUser()
+    }
+  })
 </script>
