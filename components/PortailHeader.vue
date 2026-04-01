@@ -18,7 +18,7 @@
                     class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded transition text-white">
                     🚀 Carte
                   </NuxtLink>
-                  <NuxtLink to="/app152/simple"
+                  <NuxtLink to="/app152/simple external"
                     class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded transition text-white">
                     🚀 Simple
                   </NuxtLink>
