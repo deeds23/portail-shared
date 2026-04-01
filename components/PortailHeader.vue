@@ -16,7 +16,6 @@
         <h1 class="font-bold">Dashboard Central</h1>
         
         <div class="flex gap-3">
-          
           <button 
             @click="allerVersApp152" 
             class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded transition text-white"
@@ -69,12 +68,12 @@
 </template>
 
 <script setup lang="ts">
-/* import { onMounted } from 'vue'
+import { onMounted } from 'vue'
 import { useUserStore } from '~/stores/user'
 const userStore = useUserStore()
 onMounted(async () => {
   await userStore.fetchUser()
-}) */
+})
 // On gère uniquement l'état de l'Iframe (pour Voxa)
 const activeApp = ref(null)
 
