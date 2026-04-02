@@ -1,4 +1,5 @@
 <template>
+  <div><template v-if="userStore.authenticated">
   <div class="h-screen w-full flex flex-col bg-gray-50 overflow-hidden">
     <nav class="bg-neutral-primary w-full z-50 border-b border-default shadow-sm shrink-0">
       <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -40,6 +41,13 @@
       <slot />
     </main>
   </div>
+  </template>
+  <template v-else>
+      <div class="flex h-screen items-center justify-center bg-gray-900 text-white">
+        <p>Initialisation de la session sécurisée...</p>
+      </div>
+    </template>
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -47,7 +55,6 @@
   import { useUserStore } from '~/stores/user'
   
   const userStore = useUserStore()
-  const activeApp = ref<string | null>(null)
 
   // On force la vérification de l'utilisateur au chargement du Layout !
   onMounted(async () => {
