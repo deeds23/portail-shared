@@ -20,9 +20,9 @@ export const useUserStore = defineStore('user', {
     setUser(userData: any) {
       this.user = userData
       this.authenticated = !!userData
-    },
-// On logue ce qu'on reçoit pour être sûr
       console.log('Données reçues par setUser:', userData)
+    },
+
       
    /*  async fetchUser() {
       try {
