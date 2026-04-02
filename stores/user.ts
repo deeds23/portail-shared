@@ -36,22 +36,27 @@ export const useUserStore = defineStore('user', {
         console.error('Fetch user failed:', err)
       }
     }, */
-    async fetchUser() {
+   async fetchUser() {
       try {
+        console.log('📡 Appel API /api/auth/user en cours...')
         const res = await $fetch<any>('/api/auth/user', { 
           credentials: 'include' 
         })
         
-        // D'après votre JSON, les infos réelles sont dans res.user
-        if (res && res.user) {
-          this.setUser(res.user)
-          console.log('✅ Store synchronisé pour :', res.user.name)
+        console.log('📥 Réponse brute reçue :', res)
+
+        // On cherche l'utilisateur soit dans res.user, soit dans res tout court
+        const userData = res?.user ? res.user : (res?.preferred_username ? res : null)
+        
+        if (userData) {
+          this.setUser(userData)
         } else {
+          console.warn('⚠️ Aucun utilisateur trouvé dans la réponse')
           this.setUser(null)
         }
       } catch (err) {
+        console.error('❌ Erreur réseau fetchUser:', err)
         this.setUser(null)
-        console.error('Fetch user failed:', err)
       }
     },
     async logout() {
