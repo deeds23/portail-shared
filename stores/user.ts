@@ -21,7 +21,9 @@ export const useUserStore = defineStore('user', {
       this.user = userData
       this.authenticated = !!userData
     },
-
+// On logue ce qu'on reçoit pour être sûr
+      console.log('Données reçues par setUser:', userData)
+      
    /*  async fetchUser() {
       try {
         const res = await $fetch<{ user: User }>('/api/auth/user', { 
