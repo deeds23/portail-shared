@@ -16,11 +16,11 @@
                   <NuxtLink to="/app/formulaire" external class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded transition text-white">🚀 Formulaire</NuxtLink>
 
                   <NuxtLink to="/app152/simple" external class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded transition text-white">🚀 Simple (152)</NuxtLink>
+                  <NuxtLink to="/profile" external class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded transition text-white">Profil</NuxtLink>
+                  <button @click="userStore.logout" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded transition text-white">Logout</button>
                 </div>
               </div>
             </li>
-            <li><NuxtLink to="/profile" external class="text-blue-600 font-bold hover:underline">Profil</NuxtLink></li>
-            <li><button @click="userStore.logout" class="px-3 py-1 bg-red-600 text-white rounded">Logout</button></li>
           </ul>
         </div>
       </div>
