@@ -2,7 +2,7 @@
   <div class="h-screen w-full flex flex-col bg-gray-50 overflow-hidden">
     <nav class="bg-neutral-primary w-full z-50 border-b border-default shadow-sm shrink-0">
       <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <NuxtLink to="/" class="flex flew-auto items-center space-x-3">
+        <NuxtLink to="/" external class="flex flew-auto items-center space-x-3">
           <img src="/logo_SO.png" class="h-7" alt="Logo" />
           <span class="self-center text-xl font-semibold whitespace-nowrap">Portail SO APP</span>
         </NuxtLink>
