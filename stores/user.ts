@@ -1,4 +1,21 @@
-// 3. Actions
+import { defineStore } from 'pinia'
+
+interface User {
+  preferred_username: string
+  email?: string
+  name?: string
+  groups: string[]
+  [key: string]: any
+}
+
+export const useUserStore = defineStore('user', {
+  // 2. State
+  state: () => ({
+    user: null as User | null,
+    authenticated: false,
+  }),
+
+  // 3. Actions
   actions: {
     setUser(userData: any) {
       this.user = userData
@@ -7,7 +24,6 @@
 
     async fetchUser() {
       try {
-        // 🪄 On force baseURL: '/' pour sortir de /app152/ et taper sur le 151
         const res = await $fetch<{ user: User }>('/api/auth/user', { 
           baseURL: '/', 
           credentials: 'include' 
@@ -21,7 +37,6 @@
 
     async logout() {
       try {
-        // 🪄 Pareil ici pour la déconnexion
         await $fetch('/api/auth/logout', { 
           method: 'GET', 
           baseURL: '/',
@@ -33,5 +48,16 @@
         console.error('Logout failed:', err)
       }
     },
-    
-    // ... (le reste du code hasGroup ne change pas)
+
+    hasGroup(targetGroup: string): boolean {
+      if (!this.user || !Array.isArray(this.user.groups)) {
+        return false
+      }
+      const targetClean = targetGroup.toLowerCase().replace(/^\//, '')
+      return this.user.groups.some((userGroup: string) => {
+        const groupClean = userGroup.toLowerCase().replace(/^\//, '')
+        return groupClean === targetClean
+      })
+    }
+  }
+})
