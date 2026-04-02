@@ -37,20 +37,14 @@ export const useUserStore = defineStore('user', {
     async fetchUser() {
       try {
         const res = await $fetch<any>('/api/auth/user', { 
-          baseURL: '/', 
           credentials: 'include' 
         })
         
-        // 🛠️ LOGIQUE DE DÉTECTION :
-        // Si 'res' est directement l'utilisateur (contient preferred_username)
-        // Sinon, si l'utilisateur est dans 'res.user'
-        const userData = res?.preferred_username ? res : res?.user
-
-        if (userData) {
-          this.setUser(userData)
-          console.log('✅ Store synchronisé avec :', userData.preferred_username)
+        // D'après votre JSON, les infos réelles sont dans res.user
+        if (res && res.user) {
+          this.setUser(res.user)
+          console.log('✅ Store synchronisé pour :', res.user.name)
         } else {
-          console.error('❌ Format de réponse inconnu :', res)
           this.setUser(null)
         }
       } catch (err) {
