@@ -36,19 +36,21 @@ export const useUserStore = defineStore('user', {
     }, */
     async fetchUser() {
       try {
-        // On retire le typage strict <{ user: User }> pour analyser la réponse
         const res = await $fetch<any>('/api/auth/user', { 
           baseURL: '/', 
           credentials: 'include' 
         })
         
-        // Diagnostic : si res.user existe, on le prend, sinon on prend res directement
-        const userData = res?.user ? res.user : res
-        
-        if (userData && (userData.preferred_username || userData.groups)) {
+        // 🛠️ LOGIQUE DE DÉTECTION :
+        // Si 'res' est directement l'utilisateur (contient preferred_username)
+        // Sinon, si l'utilisateur est dans 'res.user'
+        const userData = res?.preferred_username ? res : res?.user
+
+        if (userData) {
           this.setUser(userData)
-          console.log('✅ Store synchronisé avec succès:', userData.preferred_username)
+          console.log('✅ Store synchronisé avec :', userData.preferred_username)
         } else {
+          console.error('❌ Format de réponse inconnu :', res)
           this.setUser(null)
         }
       } catch (err) {
@@ -56,7 +58,6 @@ export const useUserStore = defineStore('user', {
         console.error('Fetch user failed:', err)
       }
     },
-
     async logout() {
       try {
         await $fetch('/api/auth/logout', { 
