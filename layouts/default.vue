@@ -18,7 +18,6 @@
                   <NuxtLink to="/app152/simple" external class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded transition text-white">🚀 Simple (152)</NuxtLink>
 
                   <button @click="activeApp = 'voxa'" :class="activeApp === 'voxa' ? 'bg-emerald-700 ring-2 ring-white' : 'bg-emerald-600 hover:bg-emerald-700'" class="px-4 py-2 rounded transition text-white">🐍 Voxa</button>
-                  <button @click="activeApp = null" class="bg-gray-600 hover:bg-gray-700 px-4 py-2 rounded transition ml-4 text-white">Accueil</button>
                 </div>
               </div>
             </li>
