@@ -16,8 +16,6 @@
                   <NuxtLink to="/app/formulaire" external class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded transition text-white">🚀 Formulaire</NuxtLink>
 
                   <NuxtLink to="/app152/simple" external class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded transition text-white">🚀 Simple (152)</NuxtLink>
-
-                  <button @click="activeApp = 'voxa'" :class="activeApp === 'voxa' ? 'bg-emerald-700 ring-2 ring-white' : 'bg-emerald-600 hover:bg-emerald-700'" class="px-4 py-2 rounded transition text-white">🐍 Voxa</button>
                 </div>
               </div>
             </li>
