@@ -36,10 +36,16 @@
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue'
+  import { ref, onMounted } from 'vue'
   import { useUserStore } from '~/stores/user'
   
   const userStore = useUserStore()
   const activeApp = ref<string | null>(null)
 
+  // On force la vérification de l'utilisateur au chargement du Layout !
+  onMounted(async () => {
+    if (!userStore.authenticated) {
+      await userStore.fetchUser()
+    }
+  })
 </script>
