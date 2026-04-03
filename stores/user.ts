@@ -22,7 +22,7 @@ export const useUserStore = defineStore('user', {
       this.authenticated = !!userData
     },
 
-    async fetchUser() {
+   /*  async fetchUser() {
       try {
         const res = await $fetch<{ user: User }>('/api/auth/user', { 
           baseURL: '/', 
@@ -33,8 +33,31 @@ export const useUserStore = defineStore('user', {
         this.setUser(null)
         console.error('Fetch user failed:', err)
       }
-    },
+    }, */
+    async fetchUser() {
+      try {
+        const res = await $fetch<any>('/api/auth/user', { 
+          baseURL: '/', 
+          credentials: 'include' 
+        })
+        
+        // 🛠️ LOGIQUE DE DÉTECTION :
+        // Si 'res' est directement l'utilisateur (contient preferred_username)
+        // Sinon, si l'utilisateur est dans 'res.user'
+        const userData = res?.preferred_username ? res : res?.user
 
+        if (userData) {
+          this.setUser(userData)
+          console.log('✅ Store synchronisé avec :', userData.preferred_username)
+        } else {
+          console.error('❌ Format de réponse inconnu :', res)
+          this.setUser(null)
+        }
+      } catch (err) {
+        this.setUser(null)
+        console.error('Fetch user failed:', err)
+      }
+    },
     async logout() {
       try {
         await $fetch('/api/auth/logout', { 
