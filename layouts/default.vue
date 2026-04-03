@@ -48,10 +48,5 @@
 
   const userStore = useUserStore()
 
-  // On force la vérification de l'utilisateur au chargement du Layout !
-  onMounted(async () => {
-    if (!userStore.authenticated) {
-      await userStore.fetchUser()
-    }
-  })
+  
 </script>
