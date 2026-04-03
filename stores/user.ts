@@ -9,13 +9,11 @@ interface User {
 }
 
 export const useUserStore = defineStore('user', {
-  // 2. State
   state: () => ({
     user: null as User | null,
     authenticated: false,
   }),
 
-  // 3. Actions
   actions: {
     setUser(userData: any) {
       this.user = userData
@@ -24,7 +22,7 @@ export const useUserStore = defineStore('user', {
     },
 
       
-   /*  async fetchUser() {
+   async fetchUser() {
       try {
         const res = await $fetch<{ user: User }>('/api/auth/user', { 
           baseURL: '/', 
@@ -35,30 +33,8 @@ export const useUserStore = defineStore('user', {
         this.setUser(null)
         console.error('Fetch user failed:', err)
       }
-    }, */
-   async fetchUser() {
-      try {
-        console.log('📡 Appel API /api/auth/user en cours...')
-        const res = await $fetch<any>('/api/auth/user', { 
-          credentials: 'include' 
-        })
-        
-        console.log('📥 Réponse brute reçue :', res)
-
-        // On cherche l'utilisateur soit dans res.user, soit dans res tout court
-        const userData = res?.user ? res.user : (res?.preferred_username ? res : null)
-        
-        if (userData) {
-          this.setUser(userData)
-        } else {
-          console.warn('⚠️ Aucun utilisateur trouvé dans la réponse')
-          this.setUser(null)
-        }
-      } catch (err) {
-        console.error('❌ Erreur réseau fetchUser:', err)
-        this.setUser(null)
-      }
     },
+   
     async logout() {
       try {
         await $fetch('/api/auth/logout', { 
