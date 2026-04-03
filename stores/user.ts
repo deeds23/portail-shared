@@ -9,20 +9,20 @@ interface User {
 }
 
 export const useUserStore = defineStore('user', {
+  // 2. State
   state: () => ({
     user: null as User | null,
     authenticated: false,
   }),
 
+  // 3. Actions
   actions: {
     setUser(userData: any) {
       this.user = userData
       this.authenticated = !!userData
-      console.log('Données reçues par setUser:', userData)
     },
 
-      
-   async fetchUser() {
+    async fetchUser() {
       try {
         const res = await $fetch<{ user: User }>('/api/auth/user', { 
           baseURL: '/', 
@@ -34,7 +34,7 @@ export const useUserStore = defineStore('user', {
         console.error('Fetch user failed:', err)
       }
     },
-   
+
     async logout() {
       try {
         await $fetch('/api/auth/logout', { 
