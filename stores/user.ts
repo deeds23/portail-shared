@@ -84,7 +84,7 @@ async logout() {
     console.error('Logout failed:', err)
   } finally {
     this.setUser(null)
-    window.location.href = `${portalUrl}/login`
+    await navigateTo(`${portalUrl}/login`, { external: !!portalUrl })
   }
 },
 
