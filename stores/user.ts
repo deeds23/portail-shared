@@ -73,9 +73,10 @@ export const useUserStore = defineStore('user', {
 
 async logout() {
   const config = useRuntimeConfig()
-  const base = config.public.authServerUrl
+  const portalUrl = (config.public.portalUrl as string) || ''
+  const authServerUrl = (config.public.authServerUrl as string) || ''
   try {
-    await $fetch(`${base}/api/auth/logout`, {
+    await $fetch(`${authServerUrl}/api/auth/logout`, {
       method: 'GET',
       credentials: 'include'
     })
@@ -83,8 +84,7 @@ async logout() {
     console.error('Logout failed:', err)
   } finally {
     this.setUser(null)
-    await navigateTo(`${base}/login`, { external: !!base })
-    // external: true seulement si on redirige vers un autre serveur
+    await navigateTo(`${portalUrl}/login`, { external: !!portalUrl })
   }
 },
 
