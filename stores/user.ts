@@ -59,35 +59,35 @@ export const useUserStore = defineStore('user', {
       }
     }, */
     async fetchUser() {
-      try {
-        // 🚨 AJOUT CRUCIAL : On force l'URL absolue vers le serveur 151
-        // Ainsi, même le 152 saura où aller chercher l'identité de l'utilisateur !
-        const res = await $fetch<any>('http://172.16.1.151:4000/api/auth/user', { 
-          credentials: 'include' 
-        })
-        
-        if (res && res.user) {
-          this.setUser(res.user)
-        } else {
-          this.setUser(null)
-        }
-      } catch (err) {
-        this.setUser(null)
-      }
-    },
-    async logout() {
-      try {
-        await $fetch('/api/auth/logout', { 
-          method: 'GET', 
-          baseURL: '/',
-          credentials: 'include' 
-        })
-        this.setUser(null)
-        window.location.href = '/login'
-      } catch (err) {
-        console.error('Logout failed:', err)
-      }
-    },
+  const config = useRuntimeConfig()
+  const base = config.public.authServerUrl  // '' sur 151, URL du 151 sur 152
+  try {
+    const res = await $fetch<any>(`${base}/api/auth/user`, {
+      credentials: 'include'
+    })
+    this.setUser(res?.user ?? null)
+  } catch {
+    this.setUser(null)
+  }
+},
+
+async logout() {
+  const config = useRuntimeConfig()
+  const base = config.public.authServerUrl
+  try {
+    await $fetch(`${base}/api/auth/logout`, {
+      method: 'GET',
+      credentials: 'include'
+    })
+  } catch (err) {
+    console.error('Logout failed:', err)
+  } finally {
+    this.setUser(null)
+    await navigateTo(`${base}/login`, { external: !!base })
+    // external: true seulement si on redirige vers un autre serveur
+  }
+},
+
 
     hasGroup(targetGroup: string): boolean {
       if (!this.user || !Array.isArray(this.user.groups)) {
