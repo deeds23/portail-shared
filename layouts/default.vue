@@ -2,10 +2,10 @@
   <div class="h-screen w-full flex flex-col bg-gray-50 overflow-hidden">
     <nav class="bg-neutral-primary w-full z-50 border-b border-default shadow-sm shrink-0">
       <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <NuxtLink to="/" class="flex items-center space-x-3">
+       <a :href="logoHref" class="flex items-center space-x-3">
           <img src="/logo_SO.png" class="h-7" alt="Logo" />
           <span class="self-center text-xl font-semibold whitespace-nowrap">Portail SO APP</span>
-        </NuxtLink>
+       </a>
 
         <div v-if="userStore.authenticated" class="w-full md:block md:w-auto">
           <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-default rounded-base md:flex-row md:space-x-8 md:mt-0 md:border-0">
@@ -44,6 +44,10 @@
 
 <script setup lang="ts">
 const userStore = useUserStore()
+
+const logoHref = computed(() =>
+  userStore.authenticated ? '/' : '/login'
+)
 
 onMounted(async () => {
   if (!userStore.authenticated) {
