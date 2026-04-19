@@ -14,7 +14,7 @@
                 <div class="flex gap-3">
                   <NuxtLink
                     v-if="userStore.hasGroup('Test-acces-2')"
-                    to="/app152/simple"
+                    to="/app152/"
                     external
                     class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded transition text-white">
                     App 1 / 152

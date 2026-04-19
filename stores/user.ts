@@ -85,6 +85,7 @@ async logout() {
   } finally {
     this.setUser(null)
     await navigateTo(`${portalUrl}/login`, { external: !!portalUrl })
+    
   }
 },
 
