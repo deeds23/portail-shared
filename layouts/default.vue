@@ -21,10 +21,10 @@
                   </NuxtLink>
                   <NuxtLink
                     v-if="userStore.hasGroup('Test-acces-1')"
-                    to="/kitchen/"
+                    to="/rechercheso"
                     external
                     class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded transition text-white">
-                    App 2 / Kitchen
+                    App 2 / Colis
                   </NuxtLink>
                   <NuxtLink to="/profile" external class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded transition text-white">Profil</NuxtLink>
                   <button @click="userStore.logout" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded transition text-white">Logout</button>
